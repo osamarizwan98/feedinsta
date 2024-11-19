@@ -1,0 +1,28 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "1e1532222b99325428e8aa52faaab04b"
+name = "insta-feed"
+handle = "insta-feed-20"
+application_url = "https://selective-changed-eh-monte.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "quick-wishlist.myshopify.com"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+
+[auth]
+redirect_urls = [
+  "https://selective-changed-eh-monte.trycloudflare.com/auth/callback",
+  "https://selective-changed-eh-monte.trycloudflare.com/auth/shopify/callback",
+  "https://selective-changed-eh-monte.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-01"
+
+[pos]
+embedded = false

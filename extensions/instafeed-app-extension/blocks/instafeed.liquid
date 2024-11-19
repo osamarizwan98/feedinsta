@@ -1,0 +1,631 @@
+<div id="showWFeedPost">
+  <img src="{{ 'loader-icon.svg' | asset_url }}" class="loading_icon" alt="Loader" />
+</div>
+
+{{ 'fancybox.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'fancybox.umd.js' | asset_url }}"></script>
+
+<style>
+  #showWFeedPost {
+    padding-top: {
+        {
+        block.settings.padding_top
+      }
+    }
+
+    px;
+
+    padding-bottom: {
+        {
+        block.settings.padding_bottom
+      }
+    }
+
+    px;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 35px !important;
+    height: 35px !important;
+    background-color: #000 !important;
+    border-radius: 100% !important;
+    display: flex !important;
+  }
+
+  /* .swiper-button-next {
+    right: 0 !important;
+  }
+  .swiper-button-prev{
+    left: 0 !important;
+  } */
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    font-size: 13px !important;
+    color: #fff !important;
+    font-weight: bold !important;
+  }
+
+  .swiper-slide {
+    height: auto !important;
+  }
+
+  .fancybox__backdrop {
+    display: block !important;
+  }
+
+  /* Modal Gallery */
+  .main_gallery_wrapper {
+    background-color: #fff;
+    display: flex;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 900px;
+  }
+
+  .fi_post_image_wrapper {
+    width: 45%;
+  }
+
+  .fi_right_side {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fi_post_image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .fi_top_header {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+  }
+
+  .fi_logo_img {
+    height: 45px !important;
+    width: 45px !important;
+    border-radius: 50% !important;
+    margin: 14px 12px !important;
+    border: 1px solid #eee;
+  }
+
+  .fi_top_header .fi_username_link {
+    color: #000;
+    letter-spacing: .05em;
+    font-weight: 600;
+    line-height: normal;
+    font-size: 17px;
+    text-decoration: none;
+  }
+
+  .fi_right_inner_content {
+    height: 100%;
+  }
+
+  .fi_post_caption {
+    color: #666;
+    line-height: normal;
+    margin: 20px 20px;
+    text-align: left;
+  }
+
+  .fi_bottom_date_wrap {
+    color: grey;
+    font-size: 11px;
+    border-top: 1px solid #eee;
+    padding: 15px 20px;
+    width: 100%;
+  }
+
+  .fi_bottom_date_wrap a {
+    color: grey;
+    font-size: 11px;
+    text-decoration: none;
+  }
+
+  .yarl__container {
+    background-color: #000000d0 !important;
+  }
+
+  .preview_post_grid_img {
+    cursor: pointer;
+  }
+
+  .fancybox__slide.has-image>.fancybox__content {
+    height: auto !important;
+    width: auto !important;
+  }
+
+  .loading_icon {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: auto;
+  }
+
+  .error_msg {
+    color: red;
+  }
+
+  .f-thumbs__track {
+    display: none !important;
+    transform: unset !important;
+    margin: 0 auto;
+    width: fit-content !important;
+    max-width: fit-content !important;
+  }
+
+  .fi_top_header {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .title_username_link {
+    text-decoration: none;
+    display: block;
+  }
+
+  /* .fancybox__footer{
+    display:none !important;
+  } */
+  .feed_grid_col{
+    position: relative;
+  }
+   .im_feed_overlay {
+    background-color: transparent;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    transition: all .2s linear;
+    cursor: pointer;
+    opacity: 0;
+  }
+  .feed_grid_col:hover .im_feed_overlay{
+    background-color: rgba(0, 0, 0, .5);
+    opacity: 1;
+  }
+  .im_hover_icon {
+    color: #fff;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+  }
+  .hideWrapper{
+    display: none;
+  }
+  @media (max-width: 575px) {
+    .main_gallery_wrapper {
+      display: block;
+    }
+
+    .fi_post_image_wrapper {
+      width: 100%;
+    }
+
+    .fi_right_side {
+      width: 100%;
+    }
+
+    .fi_logo_img {
+      height: 30px !important;
+      width: 30px !important;
+    }
+
+    .main_gallery_wrapper {
+      overflow-y: auto;
+    }
+  }
+</style>
+
+<script>
+  async function fetchData() {
+    try {
+      const response = await fetch('https://example-flash-omaha-conduct.trycloudflare.com/api/instafeed?shop={{ shop.permanent_domain }}', {
+        method: 'GET',
+      });
+
+      const data = await response.json();
+      console.log(data, 'data');
+      // document.querySelector(".loading_icon").style.display = "none"
+      if (data.ok) {
+        let previewData = data.data.settingData
+        const mediaData = data.data.mediaData
+        if (!previewData) {
+          previewData = {};
+        }
+        previewData.feedTitle = previewData?.feedTitle ?? "";
+        previewData.feedType = previewData?.feedType ?? "grid";
+        previewData.spacing = previewData?.spacing ?? 0;
+        previewData.postPreview = previewData?.postPreview ?? 0;
+        previewData.postRows = previewData?.postRows ?? 2;
+        previewData.postColumns = previewData?.postColumns ?? 5;
+        let totalPost = previewData.postRows * previewData.postColumns;
+
+        let limitImages = mediaData?.data.slice(0, totalPost);
+
+        let feedGridOutput = "";
+        let feedGrid = "";
+        let feedTitle = "";
+        let userHandle = "";
+
+        {% if block.settings.user_handle != blank %}
+        userHandle = `<a class="title_username_link" href="https://www.instagram.com/${limitImages[0].username}" target="_blank" style="color:{{ block.settings.title_color }};text-align:{{ block.settings.title_alignment }};"> {{ block.settings.user_handle }}</a>`;
+        {% endif %}
+
+        {% if block.settings.feed_title != blank %}
+        feedTitle = `<h2 class="h1 insta_grid_title" style="color:{{ block.settings.title_color }};font-size:{{ block.settings.title_font_size }}px;text-align:{{ block.settings.title_alignment }};">{{ block.settings.feed_title }}
+          ${userHandle}
+          </h2>
+          `;
+        {% endif %}
+        if (limitImages && limitImages?.length) {
+          if (previewData.feedType === "grid") {
+            feedGrid += `<div style="
+                          display: grid;
+                          grid-template-columns: repeat(${previewData?.postColumns}, minmax(0, 1fr));
+                          gap: ${previewData?.spacing};">
+            `;
+            limitImages.map((item, index) => {
+              feedGrid += `<div class="feed_grid_col" data-fancybox="gallery" data-fancybox-index="${index}" data-src="${item.media_url}">`;
+
+              item.media_type === "VIDEO" ? (
+                feedGrid += `<video
+                                  src=${item.media_url}
+                                  controls
+                                  width="100%"
+                                  height="100%"
+                                  style="object-fit:cover;object-position:center;"
+                                  class="preview_post_grid_img"
+                                  id="feed_post_index_${index}"
+                                  data-index="${index}"
+                                ></video>`
+              ) : (
+                feedGrid += `<img
+                                  src=${item.media_url}
+                                  width="100%"
+                                  height="100%"
+                                  alt="Instagram post"
+                                  style="object-fit:cover;object-position:center;"
+                                  class="preview_post_grid_img"
+                                  id="feed_post_index_${index}"
+                                  data-index="${index}"
+                                />`
+              )
+
+              feedGrid += `
+                      <div class="im_feed_overlay">
+                        <div class="im_hover_icon">
+                          <img
+                            src="{{ 'instagram-icon.svg' | asset_url }}"
+                            style="
+                              height: 20px;
+                              width: 20px;
+                              position: relative;
+                              transform: initial;
+                              left: 0;
+                            "
+                            alt="hover icon"
+                          />
+                        </div>
+                      </div>
+                    </div>`;
+            })
+            feedGrid += `</div>`;
+          }
+          else {
+            feedGrid += `<div class="swiper mySwiper">
+                            <div class="swiper-wrapper" id="lg-swipper">
+            `;
+
+            limitImages.map((item, index) => {
+              feedGrid += `<div class="swiper-slide feed_grid_col" data-fancybox="gallery" data-fancybox-index="${index}" data-src=${item.media_url}>`;
+
+              item.media_type === "VIDEO" ? (
+                feedGrid += `<video
+                                  src=${item.media_url}
+                                  controls
+                                  width="100%"
+                                  height="100%"
+                                  style="object-fit:cover;object-position:center;"
+                                  class="preview_post_grid_img"
+                                  id="feed_post_index_${index}"
+                                  data-index="${index}"
+                                ></video>`
+              ) : (
+                feedGrid += `<img
+                                  src=${item.media_url}
+                                  width="100%"
+                                  height="100%"
+                                  alt="Instagram post"
+                                  style="object-fit:cover;object-position:center;"
+                                  class="preview_post_grid_img"
+                                  id="feed_post_index_${index}"
+                                  data-index="${index}"
+                                />`
+              )
+
+              feedGrid += `
+                      <div class="im_feed_overlay">
+                          <div class="im_hover_icon">
+                            <img
+                              src="{{ 'instagram-icon.svg' | asset_url }}"
+                              style="
+                                height: 20px;
+                                width: 20px;
+                                position: relative;
+                                transform: initial;
+                                left: 0;
+                              "
+                              alt="hover icon"
+                            />
+                          </div>
+                        </div>
+                      </div>`;
+            })
+
+            feedGrid += `</div>
+                          <div class="swiper-button-prev"></div>
+                          <div class="swiper-button-next"></div>
+                        </div>`;
+          }
+          feedGridOutput += `<div class="fi_grid_wrapper">
+                          ${feedTitle}
+                          ${feedGrid}
+                        `;
+          feedGridOutput += `</div>`;
+        }
+        else {
+          feedGridOutput += `<div class="fi_grid_wrapper">
+                          ${feedTitle}
+                          <p>No Post Found</p>
+                        `;
+          feedGridOutput += `</div>`;
+        }
+        document.getElementById("showWFeedPost").innerHTML = feedGridOutput;
+        return { previewData, limitImages };
+      }
+      else {
+        throw new Error(data.message ?? "Something went wrong!");
+      }
+    } catch (error) {
+      document.querySelector(".loading_icon").style.display = "none"
+      console.log('There has been a problem with your fetch operation:', error.message);
+      document.getElementById("showWFeedPost").innerHTML = `<p class="error_msg">Something went wrong!</p>`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', async function () {
+    try {
+      const result = await fetchData();
+      console.log(result);
+      if (result) {
+        if (result.previewData.feedType == 'slider') {
+          let $lgSwiper = document.getElementById('lg-swipper');
+          var swiper = new Swiper(".mySwiper", {
+            slidesPerView: result.previewData.postColumns,
+            spaceBetween: result.previewData.spacing,
+            allowTouchMove: false,
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+          });
+        }
+
+        const formatDateString = (dateString) => {
+          const date = new Date(dateString);
+          const options = { day: "numeric", month: "long", year: "numeric" };
+          return date.toLocaleDateString("en-US", options);
+        };
+
+        const imageElement = document.querySelectorAll(".feed_grid_col");
+        imageElement.forEach((item, index) => {
+          item.addEventListener("click", (e) => {
+            var getImageIndex = item.getAttribute('data-fancybox-index');
+
+            // console.log('rrrrr:', result.limitImages[index]);
+            if (!result.previewData.postPreview) {
+
+              
+              Fancybox.bind('[data-fancybox="gallery"]', {
+                Toolbar: {
+                  display: {
+                    left: [],
+                    middle: [],
+                    right: [
+                      "close",
+                    ],
+                  }
+                },
+                Thumbs: true,
+                // hideScrollbar: false,
+                Images: {
+                  zoom: false,
+                },
+                Hash: false,
+                on: {
+                  reveal: (fancybox, slide) => {
+                    console.log(fancybox, slide, 'tttt');
+
+                    let mediaType = result.limitImages[slide.index].media_type === "VIDEO" ?
+                      `<div class="fi_post_image_wrapper">
+                      <video
+                        controls
+                        src=${result.limitImages[slide.index].media_url}
+                        class="fi_post_image"
+                      ></video>
+                    </div>`
+                      : (
+                        `<div class="fi_post_image_wrapper">
+                      <img class="fi_post_image" src=${result.limitImages[slide.index].media_url} />
+                    </div>`
+                      )
+
+                    slide.contentEl.innerHTML = `
+                  <div class="main_gallery_wrapper hideWrapper main_gallery_item_${getImageIndex}">
+                    ${mediaType}
+                    <div class="fi_right_side">
+                      <div class="fi_top_header">
+                        <img
+                            src="https://instafeed.nfcube.com/assets/img/logo-instagram-transparent.png"
+                            class="fi_logo_img"
+                            alt="instagram profile"
+                          />
+                        <a
+                          class="fi_username_link"
+                          href="https://www.instagram.com/${result.limitImages[slide.index].username}"
+                          target="_blank"
+                        >
+                          ${result.limitImages[slide.index].username}
+                        </a>
+                      </div>
+                      <div class="fi_right_inner_content"> 
+                        ${result.limitImages[slide.index].caption ? `<p class="fi_post_caption">${result.limitImages[slide.index].caption}</p>` : ''}
+                      </div>
+                      <div class="fi_bottom_date_wrap">
+                        <span>${formatDateString(result.limitImages[slide.index].timestamp)}</span> •
+                        <a href="${result.limitImages[slide.index].permalink}" target="_blank">
+                          View on Instagram
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  `;
+                  },
+                },
+              });
+
+              setTimeout(() => {
+                const thumbSlide = document.querySelector(`.f-thumbs__slide[data-index="${parseInt(getImageIndex)}"]`);
+                let galleryWrap  = document.querySelector(`.fancybox__slide.is-selected .main_gallery_item_${getImageIndex}`);
+                console.log('thumbSlide', thumbSlide);
+                if (thumbSlide) {
+                  thumbSlide.click();
+                  if (galleryWrap) {
+                    console.log('galleryWrap', galleryWrap);
+                    galleryWrap.classList.remove('hideWrapper');
+                  }
+                }
+              }, 500);
+
+
+
+
+            }
+            else {
+              window.open(result.limitImages[index].permalink, "_blank");
+            }
+          });
+        });
+      }
+      else {
+        throw new Error("Something went wrong!");
+      }
+    }
+    catch (error) {
+      // document.querySelector(".loading_icon").style.display = "none"
+      console.log('Error in handlePromiseFunction:', error.message);
+      document.getElementById("showWFeedPost").innerHTML = `<p class="error_msg">${message}</p>`;
+    }
+  })
+
+
+
+</script>
+
+{% schema %}
+{
+"name": "Insta Feed Post",
+"target": "section",
+"stylesheet": "swiper-bundle.min.css",
+"javascript": "swiper-bundle.min.js",
+"settings": [
+{
+"type": "text",
+"id": "feed_title",
+"label": "Title"
+},
+{
+"type": "text",
+"id": "user_handle",
+"label": "User Handle"
+},
+{
+"type": "select",
+"id": "title_alignment",
+"options": [
+{
+"value": "left",
+"label": "Left"
+},
+{
+"value": "center",
+"label": "Center"
+},
+{
+"value": "right",
+"label": "Right"
+}
+],
+"default": "left",
+"label": "Title Alignment"
+},
+{
+"type": "range",
+"id": "title_font_size",
+"min": 12,
+"max": 50,
+"step": 1,
+"unit": "px",
+"label": "Title size",
+"default": 32
+},
+{
+"type": "color",
+"id": "title_color",
+"label": "Title Color",
+"default": "#000000"
+},
+{
+"type": "header",
+"content": "Feed Spacing"
+},
+{
+"type":"range",
+"id":"padding_top",
+"label":"Padding Top",
+"min":0,
+"max":104,
+"step":2,
+"unit":"px",
+"default":0
+},
+{
+"type":"range",
+"id":"padding_bottom",
+"label":"Padding Bottom",
+"min":0,
+"max":104,
+"step":2,
+"unit":"px",
+"default":0
+}
+]
+}
+{% endschema %}

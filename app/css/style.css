@@ -1,0 +1,629 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+}
+
+.index {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+}
+
+h1,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  font-size: 14px;
+  padding-bottom: 2rem;
+}
+
+.content {
+  display: grid;
+  gap: 2rem;
+}
+
+/* form {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 auto;
+  gap: 1rem;
+} */
+
+/* label {
+  display: grid;
+  gap: 0.2rem;
+  max-width: 20rem;
+  text-align: left;
+  font-size: 1rem;
+} */
+
+input[type="text"] {
+  padding: 0.4rem;
+}
+
+button {
+  padding: 0.4rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  padding-top: 3rem;
+  margin: 0;
+  display: flex;
+  gap: 2rem;
+}
+
+li {
+  /* max-width: 20rem; */
+  text-align: left;
+}
+
+@media only screen and (max-width: 50rem) {
+  ul {
+    display: block;
+  }
+
+  li {
+    padding-bottom: 1rem;
+  }
+}
+
+
+/* My Css Started  Here */
+
+.d_flex {
+  display: flex;
+}
+.legacy_container_box{
+  align-items: center;
+}
+.Polaris-Button--iconWithText {
+  width: 100% !important;
+  height: 40px !important;
+}
+.legacy_container .skeleton-text {
+  font-size: 24px;
+  line-height: normal;
+  color: #fff;
+  max-width: 500px;
+  padding-bottom: 0px;
+}
+.legacy_container .Polaris-LegacyCard:first-child {
+  background: url(https://cdn.shopify.com/s/files/1/0646/8019/8301/files/Group_85.png?v=1708518130),
+    linear-gradient(90deg, #ec303f 0.57%, #ff3411 97.39%);
+  background-repeat: no-repeat;
+}
+.white {
+  color: #fff;
+}
+.bg-white {
+  background-color: #fff;
+}
+h1.Polaris-SkeletonPage__Title:before {
+  background-image: url(https://cdn.shopify.com/s/files/1/0646/8019/8301/files/Instagram-new-icon.svg?v=1708513060);
+  background-position: center bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+  content: "";
+  display: inline-block;
+  height: 30px;
+  margin-right: 1.1rem;
+  width: 30px;
+  vertical-align: bottom;
+}
+h1.Polaris-SkeletonPage__Title {
+  font-size: 28px;
+  color: #ef313b;
+}
+.p-20 {
+  padding: 20px;
+}
+.pb-25 {
+  padding-bottom: 25px;
+}
+.align-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.connection-btn button {
+  /* width: 60% !important; */
+  padding: 10px 24px;
+}
+.connection-btn button span svg {
+  width: 20px;
+  height: 20px;
+}
+.connection-btn button .connection_icon_span {
+  line-height: 0;
+
+}
+.connection-btn button > span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  color: #7d7d7d;
+  font-size: 16px;
+  line-height: normal;
+}
+/* .legacy_container .Polaris-LegacyCard:first-child {
+  padding: 0 20px 0 20px;
+} */
+.Polaris-Page.Polaris-Page--fullWidth {
+  padding: 0;
+}
+.install_support_wrapper {
+  margin-top: 20px;
+}
+
+
+.install_item_wrapper{
+  align-items: center;
+  gap: 0px 20px;
+}
+.install_item_wrapper .install-image{
+  width: 25%;
+}
+.install-content{
+  width: 75%;
+}
+/* .install-content .Polaris-Button{
+
+} */
+
+.w-66 {
+  width: 66.66%;
+}
+.w-33 {
+  width: 33.33%;
+}
+.w-60 {
+  width: 60%;
+}
+.w-40 {
+  width: 40%;
+}
+.install-content h2,
+.install-content p {
+  padding-bottom: 16px;
+}
+body {
+  background-color: #fff !important;
+}
+.install-content p {
+  font-weight: 500;
+}
+.pl-10 {
+    padding-left: 10px;
+  }
+  .pt-20,
+  div#Desktop-content {
+    padding-top: 0px;
+  }
+  .tabsection .Polaris-Box {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  button#Desktop {
+    background: linear-gradient(90deg, #e92f44 0%, #ff330f 49.26%);
+    height: 50px;
+  }
+  button#Mobile {
+    background: #1e1e1e;
+    height: 50px;
+  }
+  button#Desktop .Polaris-Text--medium,
+  button#Mobile .Polaris-Text--medium {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .tabsection .Polaris-Badge,
+  .tabsection .Polaris-Thumbnail {
+    background-color: transparent;
+  }
+  .tabsection .Polaris-Thumbnail::after {
+    box-shadow: none;
+  }
+  .fullwidth img {
+    width: 100%;
+  }
+  .tabsection .Polaris-LegacyCard__Section {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .previewcontainer p {
+    padding-bottom: 5px;
+}
+  .pb-5{
+    padding-bottom: 5px;
+  }
+span.Polaris-Thumbnail.Polaris-Thumbnail--sizeSmall img {
+  width: 20px;
+  height: 20px;
+}
+.pt-20{
+  padding-top: 20px;
+}
+
+.ct_box_inner_wrapper {
+  /* background-color: #fcfcfc; */
+  /* padding: 10px 10px; */
+  border-radius: 10px;
+}
+
+.Polaris-Grid-Cell .Polaris-Layout {
+  margin-left: 0;
+}
+
+.Polaris-Grid-Cell .Polaris-Layout .Polaris-Layout__Section {
+  margin: 0;
+}
+.Polaris-LegacyCard .Polaris-LegacyCard__Section {
+  padding: 20px 15px;
+}
+
+/*****************/
+
+.legacy_container .Polaris-LegacyCard__Section {
+  padding: 20px 32px;
+}
+
+.pb-12{ 
+  padding-bottom: 12px;
+ }
+
+.install_item_wrapper .install-image img {
+  width: 75%;
+}
+
+.install_support_wrapper .Polaris-Grid .d_flex.p-30-70 {
+  background-color: #f1f1f1;
+  border-radius: 12px;
+  padding-left: 25px;
+  padding-right: 25px;
+  height: 100%;
+}
+.p-30-70 {
+  padding: 15px 70px;
+}
+.install-content h2, .install-content p {
+  padding-bottom: 16px;
+}
+.Polaris-LegacyCard .Polaris-LegacyCard__Section {
+  padding: 15px 15px;
+}
+
+.h-80 {
+  height: 80px;
+}
+.w-80 {
+  width: 80px !important;
+  padding: 5px;
+}
+
+
+/*******************/
+
+
+/* My Css Started  Ends */
+
+/* Osama CSS Start */
+
+.install-content .Polaris-Button {
+  padding: 10px 16px;
+  background-color: #303030;
+  border-radius: 5px !important;
+  font-size: 14px;
+}
+.install-content .Polaris-Button span {
+  font-weight: 500;
+}
+
+
+.setting_form_btn .Polaris-Button:hover {
+  background: linear-gradient(45deg, #ec303e, #ff3411);
+  color: #fcfcfc;
+  border: none;
+}
+.setting_form_btn .Polaris-Button {
+  background: linear-gradient(45deg, #ec303e, #ff3411);
+  color: #fcfcfc;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 14px;
+  font-weight: bolder;
+  border: none;
+}
+.tab_settings_wrapper .Polaris-Tabs__Tab {
+  background-color: #1e1e1e;
+  color: #fcfcfc;
+  border-radius: 10px;
+  padding: 25px 20px;
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  line-height: normal;
+}
+.tab_settings_wrapper .Polaris-Tabs__Tab:hover {
+  background-color: #1e1e1e !important;
+  color: #fcfcfc !important;
+}
+.tab_settings_wrapper .Polaris-Tabs__Tab .Polaris-Text--root {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: #fcfcfc;
+  width: 100%;
+}
+
+.tab_settings_wrapper .Polaris-Box {
+  padding: 0px;
+}
+.tab_settings_wrapper .Polaris-Tabs {
+  padding: 0px;
+  gap: 0px 30px;
+}
+.form_layout_wrapper {
+  margin-top: 40px;
+}
+.form_layout_wrapper form .Polaris-TextField__Input,
+.form_layout_wrapper form .Polaris-Select__Input,
+.form_layout_wrapper form .Polaris-Select__Content {
+  /* font-size: var(--p-font-size-325); */
+  font-size: 13px;
+  padding: 10px 10px;
+  line-height: var(--p-font-line-height-500);
+  /* border: 1px solid #dbdbdb !important; */
+  border-radius: 5px;
+  color: #7d7d7d;
+}
+.tab_settings_wrapper .Polaris-Tabs__Tab.Polaris-Tabs__Tab--active {
+  background: linear-gradient(45deg, #ec303e, #ff3411);
+}
+.form_layout_wrapper form .Polaris-TextField__Backdrop,
+.form_layout_wrapper form .Polaris-Select__Backdrop {
+  border: 1px solid #dbdbdb !important;
+}
+
+.form_layout_wrapper
+  form
+  .Polaris-TextField:focus-within
+  > .Polaris-TextField__Input
+  ~ .Polaris-TextField__Backdrop,
+.form_layout_wrapper
+  form
+  .Polaris-Select:focus-within
+  > .Polaris-Select__Input
+  ~ .Polaris-Select__Backdrop {
+  outline: none !important;
+  border: 1px solid #dbdbdb !important;
+}
+.tab_settings_wrapper .Polaris-Tabs__Tab .Polaris-Badge {
+  background: transparent;
+  position: absolute;
+  right: 10px;
+}
+.tab_settings_wrapper .Polaris-Tabs__Tab .Polaris-Thumbnail {
+  height: 25px;
+  background: transparent;
+  width: 25px;
+  border-radius: 0;
+}
+
+.tab_settings_wrapper .Polaris-Tabs__Tab .Polaris-Thumbnail::after {
+  box-shadow: none;
+}
+.theme_install_wrapper {
+  margin-top: 20px;
+}
+.form_layout_wrapper form .Polaris-Label__Text {
+  font-size: 13px;
+  color: #7d7d7d !important;
+  font-weight: 500;
+}
+.add_to_theme_label {
+  font-size: 14px;
+  color: #7d7d7d;
+  margin-bottom: 0;
+  padding-bottom: 20px;
+}
+.add_feed_to_theme .Polaris-Button {
+  font-size: 14px;
+  color: #7d7d7d;
+  border: 1px solid #000000b3;
+  font-weight: bold;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background-color: transparent;
+}
+.add_feed_to_theme .Polaris-Button:hover {
+  background-color: transparent;
+  color: #7d7d7d;
+  border: none;
+  border: 1px solid #000000b3;
+}
+.contact_support_link {
+  color: #7d7d7d;
+  margin: 8px 0px;
+  font-weight: 500;
+  text-align: center;
+  display: block;
+}
+.username {
+  text-align: end;
+}
+.username h2 {
+  color: #1e1e1e;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  right: 0;
+  width: 35px;
+  height: 35px;
+  background-color: #000;
+  border-radius: 100%;
+}
+.swiper-button-next {
+  right: 0;
+}
+.swiper-button-prev{
+  left: 0;
+}
+.swiper-button-prev:after, .swiper-button-next:after {
+  font-size: 13px;
+  color: #fff;
+  font-weight: bold;
+}
+.swiper-slide{
+  height: auto !important;
+}
+
+/* Modal Gallery */
+.main_gallery_wrapper {
+  background-color: #fff;
+  display: flex;
+  border-radius: 15px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 900px;
+}
+.fi_post_image_wrapper {
+  width: 45%;
+}
+.fi_right_side {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+}
+.fi_post_image {
+  width: 100%;
+  height: 100%;
+}
+.fi_top_header {
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+}
+.fi_logo_img{
+  height: 45px!important;
+  width: 45px!important;
+  border-radius: 50%!important;
+  margin: 12px!important;
+  border: 1px solid #eee;
+}
+.fi_top_header .fi_username_link {
+  color: #000;
+  letter-spacing: .05em;
+  font-weight: 600;
+  line-height: normal;
+  font-size: 17px;
+  text-decoration: none;
+}
+.fi_right_inner_content {
+  height: 100%;
+}
+.fi_post_caption{
+  color: #666;
+  line-height: normal;
+  margin: 20px 20px;
+  text-align: left;
+}
+.fi_bottom_date_wrap {
+  color: grey;
+  font-size: 11px;
+  border-top: 1px solid #eee;
+  padding: 15px 20px;
+  width: 100%;
+}
+.fi_bottom_date_wrap a {
+  color: grey;
+  font-size: 11px;
+  text-decoration: none;
+}
+.yarl__container {
+  background-color: #000000d0 !important;
+}
+.preview_post_grid_img{
+  cursor: pointer;
+}
+.preview_default_images img{
+  width: auto !important;
+}
+.username .Polaris-PageActions {
+  padding-top: 0;
+  margin: auto 0;
+  padding-bottom: 0;
+}
+.button_support_form button {
+  background: linear-gradient(45deg, #ec303e, #ff3411);
+  color: #fcfcfc;
+  border-radius: 5px;
+  padding: 16px 15px;
+  font-size: 18px;
+  font-weight: bolder;
+  border: none;
+  outline: none !important;
+  box-shadow: none !important;
+  width: 100%;
+  border-radius: 12px;
+}
+
+.button_support_form button:hover{
+  background: linear-gradient(45deg, #ec303e, #ff3411) !important;
+    color: #fcfcfc !important;
+    border: none;
+}
+.support_form_title_bg{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 15px 10px;
+  border-radius: 12px;
+}
+.support_form_title_bg h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+}
+.form_support_wrapper {
+  background-color: #FCFCFC;
+  box-shadow: 0 0 33px 0px #0000001a;
+  border-radius: 12px;
+  padding: 30px 40px;
+  margin: 20px 0px;
+}
+.tabsection .Polaris-Tabs__Panel {
+  max-height: 515px;
+  overflow-y: auto;
+}
+.tabsection .Polaris-Tabs__Panel::-webkit-scrollbar {
+  width: 10px;
+}
+.tabsection .Polaris-Tabs__Panel::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+.tabsection .Polaris-Tabs__Panel::-webkit-scrollbar-thumb {
+  background: #000; 
+}
+ 
+
